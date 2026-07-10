@@ -25,7 +25,7 @@ if (-not (Test-Path $Target)) {
     New-Item -ItemType File -Path $Target | Out-Null
 }
 
-$existing = Get-Content -Path $Target -Raw -ErrorAction SilentlyContinue
+$existing = Get-Content -Path $Target -Raw -Encoding UTF8 -ErrorAction SilentlyContinue
 if ($null -eq $existing) { $existing = "" }
 
 $lines = $existing -split "`r?`n"
@@ -37,7 +37,7 @@ foreach ($line in $lines) {
     if (-not $skip) { $kept.Add($line) }
 }
 
-$sourceContent = Get-Content -Path $Source -Raw
+$sourceContent = Get-Content -Path $Source -Raw -Encoding UTF8
 $newContent = ($kept -join "`n") + "`n`n$BeginMark`n$sourceContent`n$EndMark`n"
 Set-Content -Path $Target -Value $newContent -Encoding utf8
 
