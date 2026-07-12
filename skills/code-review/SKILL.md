@@ -1,6 +1,6 @@
 ---
 name: code-review
-description: Review the changes since a fixed point (commit, branch, tag, or merge-base) along two axes — Standards (does the code follow this repo's documented coding standards?) and Spec (does the code match what the originating issue/PRD asked for?). Runs both reviews in parallel sub-agents and reports them side by side. Use when the user wants to review a branch, a PR, work-in-progress changes, or asks to "review since X".
+description: Review the changes since a fixed point (commit, branch, tag, or merge-base) along two axes — Standards (repo conventions, Fowler code-smell baseline, and a security/performance/testing/docs risk checklist) and Spec (does the code match what the originating issue/PRD asked for?). Runs both reviews in parallel sub-agents and reports them side by side. Use when the user wants to review a branch, a PR, work-in-progress changes, or asks to "review since X".
 ---
 
 Two-axis review of the diff between `HEAD` and a fixed point the user supplies:
@@ -55,6 +55,15 @@ Each smell reads *what it is* → *how to fix*; match it against the diff:
 - **Middle Man** — a class or function that mostly just delegates onward. → cut it, call the real target direct.
 - **Refused Bequest** — a subclass or implementer that ignores or overrides most of what it inherits. → drop the inheritance, use composition.
 
+On top of the smell baseline, the Standards axis also always carries this **risk checklist** — unlike the smells, these are not judgement calls to weigh, they're must-flag-if-present:
+
+- **Security** — hardcoded secrets/credentials; SQL/shell/HTML built via string concatenation instead of parameterization/escaping; input crossing a trust boundary (user input, external API response) without validation; an auth/authz check removed, weakened, or reordered relative to before the diff.
+- **Performance** — an obvious N+1 query pattern introduced; a query added over an unindexed column in a hot path; a blocking/synchronous call added on a path that was previously async, without justification.
+- **Testing** — new or changed logic in the diff with no corresponding test change; a test that asserts something tautological (always passes regardless of the code under test).
+- **Documentation** — a public/exported function's signature or behavior changed without updating the doc comment or README section that describes it.
+
+Same suppression rule as the smells: if the repo's documented standards explicitly endorse something the checklist would flag, the repo wins.
+
 ### 4. Spawn both sub-agents in parallel
 
 Send a single message with two `Agent` tool calls. Use the `general-purpose` subagent for both.
@@ -62,8 +71,8 @@ Send a single message with two `Agent` tool calls. Use the `general-purpose` sub
 **Standards sub-agent prompt** — include:
 
 - The full diff command and commit list.
-- The list of standards-source files you found in step 3, **plus the smell baseline from step 3** pasted in full — the sub-agent has no other access to it.
-- The brief: "Report — per file/hunk where relevant — (a) every place the diff violates a documented standard: cite the standard (file + the rule); and (b) any baseline smell you spot: name it and quote the hunk. Distinguish hard violations from judgement calls — documented-standard breaches can be hard, but baseline smells are always judgement calls, and a documented repo standard overrides the baseline. Skip anything tooling enforces. Under 400 words."
+- The list of standards-source files you found in step 3, **plus the smell baseline and the risk checklist from step 3** pasted in full — the sub-agent has no other access to them.
+- The brief: "Report — per file/hunk where relevant — (a) every place the diff violates a documented standard: cite the standard (file + the rule); (b) any baseline smell you spot: name it and quote the hunk; (c) any risk-checklist item you spot (security/performance/testing/docs): name it and quote the hunk. Distinguish hard violations from judgement calls — documented-standard breaches and risk-checklist hits are must-flag, baseline smells are always judgement calls, and a documented repo standard overrides both. Skip anything tooling enforces. Under 400 words."
 
 **Spec sub-agent prompt** — include:
 

@@ -10,12 +10,16 @@ $EndMark = "<!-- END config-claude -->"
 
 New-Item -ItemType Directory -Force -Path (Join-Path $ClaudeDir "skills") | Out-Null
 New-Item -ItemType Directory -Force -Path (Join-Path $ClaudeDir "agents") | Out-Null
+New-Item -ItemType Directory -Force -Path (Join-Path $ClaudeDir "commands") | Out-Null
 
 Write-Host "Copiando skills..."
 Copy-Item -Path (Join-Path $ScriptDir "skills\*") -Destination (Join-Path $ClaudeDir "skills") -Recurse -Force
 
 Write-Host "Copiando agentes..."
 Copy-Item -Path (Join-Path $ScriptDir "agents\*") -Destination (Join-Path $ClaudeDir "agents") -Recurse -Force
+
+Write-Host "Copiando comandos..."
+Copy-Item -Path (Join-Path $ScriptDir "commands\*") -Destination (Join-Path $ClaudeDir "commands") -Recurse -Force
 
 Write-Host "Actualizando CLAUDE.md..."
 $Target = Join-Path $ClaudeDir "CLAUDE.md"

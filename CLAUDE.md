@@ -34,4 +34,4 @@ Las leyes y programas de desarrollo urbano cambian por administración (municipa
 - Formatos: Shapefile (.shp) y GeoJSON como intercambio común.
 - Proyecciones: UTM zona 14N (EPSG:32614) es común para México central; verifica la zona UTM correcta según la ubicación real de los datos.
 
-Para el detalle operativo de cada dominio, ver los skills `analisis-territorial-mx` y `gis-toolkit`.
+Para el detalle operativo de cada dominio, ver los skills `normativa-urb` y `gis-exp`.

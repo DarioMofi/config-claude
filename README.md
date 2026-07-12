@@ -9,11 +9,17 @@ Este repo es la "imagen" reproducible de esa configuración: clónalo en cualqui
 | Archivo | Qué hace |
 |---|---|
 | [`CLAUDE.md`](CLAUDE.md) | Perfil global: principios de trabajo + contexto de dominio (normativa urbana mexicana + herramientas GIS) |
-| [`skills/analisis-territorial-mx/`](skills/analisis-territorial-mx/SKILL.md) | Propio. Se activa en tareas de uso de suelo, dictámenes territoriales, programas de desarrollo urbano |
-| [`skills/gis-toolkit/`](skills/gis-toolkit/SKILL.md) | Propio. Se activa en tareas con datos geoespaciales (QGIS, PostGIS, Shapefile/GeoJSON) |
+| [`skills/normativa-urb/`](skills/normativa-urb/SKILL.md) | Propio. Se activa en tareas de uso de suelo, dictámenes territoriales, programas de desarrollo urbano |
+| [`skills/gis-exp/`](skills/gis-exp/SKILL.md) | Propio. Se activa en tareas con datos geoespaciales (QGIS, PostGIS, SQL espacial, Shapefile/GeoJSON/raster) |
 | [`agents/territorial-analyst.md`](agents/territorial-analyst.md) | Propio. Subagente de investigación (solo lectura) para research normativo + geoespacial |
+| [`agents/gis-data-analyst.md`](agents/gis-data-analyst.md) | Propio. Subagente de solo lectura para inspeccionar y validar datos geoespaciales reales |
+| [`agents/code-reviewer.md`](agents/code-reviewer.md) | Propio. Subagente de solo lectura para una segunda opinión de revisión de código, aislada del contexto de quien escribió el cambio |
+| [`skills/backend-dev/`](skills/backend-dev/SKILL.md) | Propio. Se activa en tareas de diseño de APIs, optimización de base de datos, o seguridad de backend |
+| [`skills/data-analysis-py/`](skills/data-analysis-py/SKILL.md) | Propio. Se activa en tareas de análisis/limpieza/agregación de datos tabulares con pandas |
+| [`commands/architecture-review.md`](commands/architecture-review.md) | Propio. Comando manual (`/architecture-review`) — auditoría de arquitectura a nivel sistema, no se auto-dispara |
+| [`commands/docu.md`](commands/docu.md) | Propio. Comando manual (`/docu`) — documenta los cambios de la sesión actual en un changelog, sin comitear |
 
-No incluye hooks ni scripts que se ejecuten automáticamente durante una sesión — solo `CLAUDE.md`, skills y un agente, todo en markdown.
+No incluye hooks — solo `CLAUDE.md`, skills, agentes y comandos, todo en markdown.
 
 ### Skills vendorizados de terceros
 

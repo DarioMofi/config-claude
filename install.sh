@@ -9,13 +9,16 @@ CLAUDE_DIR="${HOME}/.claude"
 BEGIN_MARK="<!-- BEGIN config-claude -->"
 END_MARK="<!-- END config-claude -->"
 
-mkdir -p "$CLAUDE_DIR/skills" "$CLAUDE_DIR/agents"
+mkdir -p "$CLAUDE_DIR/skills" "$CLAUDE_DIR/agents" "$CLAUDE_DIR/commands"
 
 echo "Copiando skills..."
 cp -r "$SCRIPT_DIR/skills/." "$CLAUDE_DIR/skills/"
 
 echo "Copiando agentes..."
 cp -r "$SCRIPT_DIR/agents/." "$CLAUDE_DIR/agents/"
+
+echo "Copiando comandos..."
+cp -r "$SCRIPT_DIR/commands/." "$CLAUDE_DIR/commands/"
 
 echo "Actualizando CLAUDE.md..."
 TARGET="$CLAUDE_DIR/CLAUDE.md"

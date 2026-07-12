@@ -1,6 +1,6 @@
 ---
 name: ui-styling
-description: Create beautiful, accessible user interfaces with shadcn/ui components (built on Radix UI + Tailwind), Tailwind CSS utility-first styling, and canvas-based visual designs. Use when building user interfaces, implementing design systems, creating responsive layouts, adding accessible components (dialogs, dropdowns, forms, tables), customizing themes and colors, implementing dark mode, generating visual designs and posters, or establishing consistent styling patterns across applications.
+description: Implement user interfaces in code with shadcn/ui components (built on Radix UI + Tailwind) and Tailwind CSS utility-first styling. Use when building UI, implementing accessible components (dialogs, dropdowns, forms, tables), customizing themes and colors, implementing dark mode, or establishing consistent styling patterns across applications. For aesthetic direction and visual design philosophy, use `frontend-design` instead.
 argument-hint: "[component or layout]"
 license: MIT
 metadata:
@@ -10,7 +10,7 @@ metadata:
 
 # UI Styling Skill
 
-Comprehensive skill for creating beautiful, accessible user interfaces combining shadcn/ui components, Tailwind CSS utility styling, and canvas-based visual design systems.
+Comprehensive skill for creating beautiful, accessible user interfaces combining shadcn/ui components and Tailwind CSS utility styling. For visual design philosophy and aesthetic direction, see the `frontend-design` skill instead.
 
 ## Reference
 
@@ -26,7 +26,6 @@ Use when:
 - Creating responsive, mobile-first layouts
 - Implementing dark mode and theme customization
 - Building design systems with consistent tokens
-- Generating visual designs, posters, or brand materials
 - Rapid prototyping with immediate visual feedback
 - Adding complex UI patterns (data tables, charts, command palettes)
 
@@ -45,13 +44,6 @@ Use when:
 - Mobile-first responsive design
 - Consistent design tokens (colors, spacing, typography)
 - Automatic dead code elimination
-
-### Visual Design Layer: Canvas
-- Museum-quality visual compositions
-- Philosophy-driven design approach
-- Sophisticated visual communication
-- Minimal text, maximum visual impact
-- Systematic patterns and refined aesthetics
 
 ## Quick Start
 
@@ -193,21 +185,6 @@ Covers:
 - Layer organization (@layer base, components, utilities)
 - Apply directive for component extraction
 
-## Visual Design System
-
-**Canvas-based design philosophy, visual communication principles, and sophisticated compositions.**
-
-See: `references/canvas-design-system.md`
-
-Covers:
-- Design philosophy approach
-- Visual communication over text
-- Systematic patterns and composition
-- Color, form, and spatial design
-- Minimal text integration
-- Museum-quality execution
-- Multi-page design systems
-
 ## Utility Scripts
 
 **Python automation for component installation and configuration generation.**
@@ -248,9 +225,6 @@ python scripts/tailwind_config_gen.py --colors brand:blue --fonts display:Inter
 - `references/tailwind-utilities.md` - Core utility classes
 - `references/tailwind-responsive.md` - Responsive design
 - `references/tailwind-customization.md` - Configuration and extensions
-
-**Visual Design**
-- `references/canvas-design-system.md` - Design philosophy and canvas workflows
 
 **Automation**
 - `scripts/shadcn_add.py` - Component installation
