@@ -45,6 +45,10 @@ Use when:
 - Consistent design tokens (colors, spacing, typography)
 - Automatic dead code elimination
 
+## Script Paths
+
+Script paths in this skill and its `references/` are relative to the directory that contains this SKILL.md, not to the project: `scripts/<file>` is this skill's own `scripts/` folder, and `../<skill>/scripts/<file>` is a sibling sub-skill installed alongside it. Build the full path from that directory (Claude Code reports it as the skill's base directory when the skill loads) and keep the working directory at the project root — the scripts read and write project files such as `docs/brand-guidelines.md`, `assets/design-tokens.json` or `src/` relative to it.
+
 ## Quick Start
 
 ### Component + Styling Setup
@@ -199,6 +203,14 @@ python scripts/shadcn_add.py button card dialog
 Generate tailwind.config.js with custom theme:
 ```bash
 python scripts/tailwind_config_gen.py --colors brand:blue --fonts display:Inter
+```
+
+The generator refuses to create or replace a config when any sibling
+`tailwind.config.js`, `.cjs`, `.mjs`, or `.ts` file already exists. Review the
+reported config first, then pass `--force` only when the competing output is
+intentional:
+```bash
+python scripts/tailwind_config_gen.py --colors brand:blue --force
 ```
 
 ## Best Practices

@@ -1,0 +1,14 @@
+{
+  "marketplaces": [
+    { "name": "claude-plugins-official", "source": "anthropics/claude-plugins-official" },
+    { "name": "trailofbits", "source": "trailofbits/skills" }
+  ],
+  "plugins": [
+    "mattpocock-skills@claude-plugins-official",
+    "supabase@claude-plugins-official",
+    "vercel@claude-plugins-official",
+    "context7@claude-plugins-official",
+    "insecure-defaults@trailofbits",
+    "supply-chain-risk-auditor@trailofbits"
+  ]
+}

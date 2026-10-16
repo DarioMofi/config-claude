@@ -11,7 +11,7 @@ Actívalo cuando la tarea pida:
 - Diseñar o revisar endpoints (REST o GraphQL): forma de la respuesta, versionado, paginación, manejo de errores.
 - Optimizar consultas o esquema de base de datos: índices, N+1, migraciones.
 - Implementar o revisar autenticación/autorización, validación de entrada, o manejo de secretos.
-- Decisiones de arquitectura de servidor que no son específicamente de diseño de módulos (para eso, `codebase-design`) ni de UI (para eso, las skills de diseño).
+- Decisiones de arquitectura de servidor que no son específicamente de diseño de módulos (para eso, `mattpocock-skills:codebase-design`) ni de UI (para eso, las skills de diseño).
 
 ## Diseño de APIs
 
@@ -29,19 +29,16 @@ Actívalo cuando la tarea pida:
 
 ## Optimización de base de datos
 
-**Índices:**
-- Índice en toda columna usada en `WHERE`, `JOIN`, o `ORDER BY` de una consulta que corre seguido — sin excepción para tablas que van a crecer.
-- Índice compuesto cuando el filtro siempre combina las mismas 2+ columnas — el orden de las columnas en el índice importa (la más selectiva primero, salvo que el patrón de consulta diga lo contrario).
-- Cuidado con sobre-indexar: cada índice tiene costo de escritura — no repliques un índice por columna "por si acaso" en tablas con escritura pesada.
+Con PostgreSQL (incluido Supabase), las reglas de índices, N+1, pooling de conexiones, locks y RLS viven en el skill `supabase:supabase-postgres-best-practices` — cárgalo antes de tocar esquema o consultas, no las dupliques aquí. Para la plataforma Supabase (CLI, MCP, auth, migraciones declarativas), el skill `supabase:supabase`. Lo que sigue complementa esos skills.
 
-**N+1** — el problema más común y más silencioso: un loop que dispara una consulta por cada fila de un resultado anterior. Antes de aceptar un loop con una consulta adentro, pregunta si se puede resolver con un solo `JOIN`/`WHERE IN` o con el eager-loading del ORM (`include`/`select_related`/`with`, según el stack).
+**Índices** — cuidado con sobre-indexar: cada índice tiene costo de escritura — no repliques un índice por columna "por si acaso" en tablas con escritura pesada.
+
+**N+1 con ORM** — fuera de SQL directo, el arreglo suele ser el eager-loading del ORM (`include`/`select_related`/`with`, según el stack).
 
 **Migraciones:**
 - Nunca agregues una columna `NOT NULL` sin `DEFAULT` a una tabla con filas existentes sin antes hacer backfill — bloquea la tabla o falla, según el motor.
 - En tablas grandes, evita locks de escritura largos: agrega el índice con la variante *concurrente* del motor (ej. `CREATE INDEX CONCURRENTLY` en Postgres) en vez de la versión que bloquea la tabla completa.
 - Toda migración debe ser reversible o, si no lo es (ej. borrar una columna), documentar explícitamente que no lo es y por qué es aceptable.
-
-**Conexiones** — usa un pool de conexiones dimensionado al tráfico real, no al máximo teórico; un pool sobredimensionado agota conexiones de la base de datos bajo carga concurrente de múltiples instancias de la app.
 
 ### Cruce con `gis-exp`
 

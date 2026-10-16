@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "ask": [
+      "mcp__*supabase*"
+    ]
+  },
+  "env": {
+    "VERCEL_PLUGIN_TELEMETRY": "off"
+  }
+}

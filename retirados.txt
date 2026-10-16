@@ -1,0 +1,25 @@
+# Rutas (relativas a ~/.claude) que versiones anteriores de este repo instalaban
+# y ya no. El instalador las borra si existen, para que no queden duplicadas.
+# Las skills de mattpocock ahora llegan con el plugin mattpocock-skills.
+skills/code-review
+skills/codebase-design
+skills/diagnosing-bugs
+skills/domain-modeling
+skills/grill-with-docs
+skills/implement
+skills/improve-codebase-architecture
+skills/prototype
+skills/research
+skills/resolving-merge-conflicts
+skills/tdd
+skills/to-spec
+skills/to-tickets
+skills/triage
+skills/wayfinder
+skills/grill-me
+skills/grilling
+skills/handoff
+skills/teach
+skills/writing-great-skills
+skills/analisis-territorial-mx
+skills/gis-toolkit
