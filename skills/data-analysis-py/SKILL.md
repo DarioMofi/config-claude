@@ -87,6 +87,6 @@ No hay una respuesta única — decide explícitamente, no dejes el default de p
 
 ## Dónde termina este skill
 
-- **Visualización** (gráficas, dashboards) — usa el skill `dataviz`, no reinventes aquí las convenciones de charting.
+- **Visualización** (gráficas, dashboards) — fuera del alcance de este skill; usa la librería que ya use el proyecto (matplotlib, plotly, etc.) y sus convenciones.
 - **Datos geoespaciales** (geometrías, CRS, shapefiles) — usa `gis-exp`; `geopandas` es un superset de pandas, así que todo lo de aquí aplica, pero las operaciones espaciales viven allá.
 - **Si el resultado de este análisis va a alimentar un endpoint o base de datos en producción** — la optimización de la consulta/esquema de origen es de `backend-dev`; este skill cubre el procesamiento en memoria, no el diseño de la fuente de datos.
