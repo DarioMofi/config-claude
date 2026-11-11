@@ -8,7 +8,7 @@ Este repo es la "imagen" reproducible de esa configuración: clónalo en cualqui
 
 | Archivo | Qué hace |
 |---|---|
-| [`CLAUDE.md`](CLAUDE.md) | Perfil global: principios de trabajo + contexto de dominio (normativa urbana mexicana + herramientas GIS) |
+| [`CLAUDE.md`](CLAUDE.md) | Perfil global: principios de trabajo + contexto de dominio (normativa urbana mexicana + herramientas GIS) + regla de `Estado.md`, la libreta compartida con Antigravity |
 | [`skills/normativa-urb/`](skills/normativa-urb/SKILL.md) | Propio. Se activa en tareas de uso de suelo, dictámenes territoriales, programas de desarrollo urbano |
 | [`skills/gis-exp/`](skills/gis-exp/SKILL.md) | Propio. Se activa en tareas con datos geoespaciales (QGIS, PostGIS, SQL espacial, Shapefile/GeoJSON/raster) |
 | [`skills/backend-dev/`](skills/backend-dev/SKILL.md) | Propio. Diseño de APIs, migraciones y seguridad de backend. Para Postgres/Supabase remite a los skills oficiales de Supabase |
@@ -32,7 +32,18 @@ Copiados dentro de este repo porque se modificaron localmente (acotados para que
 | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | MIT | `banner-design`, `brand`, `design`, `design-system`, `slides`, `ui-styling`, `ui-ux-pro-max` |
 | [anthropics/skills](https://github.com/anthropics/skills) — carpeta `frontend-design` | Apache 2.0 (`LICENSE.txt` incluido junto al skill) | `frontend-design` |
 
-Cambios locales sobre upstream: `design` no trae las referencias de slides (viven en `slides`/`design-system`); `ui-styling` no trae la capa "Canvas" (la filosofía visual vive en `frontend-design`); `ui-ux-pro-max` aclara en su descripción que no es un sistema de tokens.
+Cambios locales sobre upstream: `design` no trae las referencias de slides (viven en `slides`/`design-system`) ni el flujo de banners (vive en `banner-design`); `ui-styling` no trae la capa "Canvas" (la filosofía visual vive en `frontend-design`). Las descripciones de los 8 skills de diseño están reescritas para que cada uno tenga un solo dueño por tarea y diga a cuál delegar lo demás:
+
+| Tarea | Skill |
+|---|---|
+| Dirección estética de una UI nueva o rediseño | `frontend-design` |
+| Elegir estilo, paleta o tipografía por tipo de producto; reglas y auditoría UX/accesibilidad | `ui-ux-pro-max` |
+| Implementar estilos con Tailwind/shadcn (el CLI y registros de shadcn van con `vercel:shadcn`) | `ui-styling` |
+| Tokens y specs de componentes | `design-system` |
+| Presentaciones HTML | `slides` |
+| Banners, portadas, headers | `banner-design` |
+| Logos, identidad corporativa (CIP), íconos, fotos para redes | `design` |
+| Voz y guías de marca | `brand` |
 
 **Para actualizarlos** sin perder esos cambios: merge de 3 vías — la versión vendorizada original como base, la de este repo como "local" y la de upstream como "upstream". Así entran las correcciones de arriba y se conservan los recortes. Última sincronización: 2026-11-11 (`ui-ux-pro-max`: filtro RTL, Nuxt UI v4.12, catálogos de estilos y productos).
 

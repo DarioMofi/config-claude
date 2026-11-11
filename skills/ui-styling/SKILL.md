@@ -1,6 +1,6 @@
 ---
 name: ui-styling
-description: Implement user interfaces in code with shadcn/ui components (built on Radix UI + Tailwind) and Tailwind CSS utility-first styling. Use when building UI, implementing accessible components (dialogs, dropdowns, forms, tables), customizing themes and colors, implementing dark mode, or establishing consistent styling patterns across applications. For aesthetic direction and visual design philosophy, use `frontend-design` instead.
+description: "Implement styling in code with Tailwind CSS and shadcn/ui: themes, colors, dark mode, responsive utilities, and accessible component patterns (dialogs, dropdowns, forms, tables). Use when the project uses or will use Tailwind or shadcn and the look is already decided. For the shadcn CLI, adding components, or registries, use `vercel:shadcn`; for aesthetic direction, `frontend-design`."
 argument-hint: "[component or layout]"
 license: MIT
 metadata:

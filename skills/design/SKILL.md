@@ -1,6 +1,6 @@
 ---
 name: design
-description: "Design asset generation via AI image models (Gemini, Atlas Cloud, or MuAPI): logo generation (55 styles), corporate identity program (50 deliverables, CIP mockups), banner design (22 styles, social/ads/web/print), icon design (15 styles, SVG, Gemini 3.1 Pro), social photos (HTML→screenshot, multi-platform). Routes to `brand`, `design-system` (tokens + slides), and `ui-styling` (code) for those concerns. Actions: design logo, create CIP, generate mockups, design banner, generate icon, create social photos, social media images, brand identity. Platforms: Facebook, Twitter, LinkedIn, YouTube, Instagram, Pinterest, TikTok, Threads, Google Ads."
+description: "Visual asset generation with AI image models (Gemini, Atlas Cloud, or MuAPI): logos (55 styles), corporate identity program (CIP deliverables and mockups), SVG icons, and social media photos. Use when the user wants a logo, CIP, icon set, or images for social posts. Not for banners or covers (`banner-design`), presentations (`slides`), brand guidelines or voice (`brand`), tokens (`design-system`), or UI in code (`frontend-design`, `ui-styling`)."
 argument-hint: "[design-type] [context]"
 license: MIT
 metadata:
@@ -10,7 +10,7 @@ metadata:
 
 # Design
 
-Unified design skill: brand, tokens, UI, logo, CIP, banners, social photos, icons. Slides live in the `design-system` skill.
+Unified design skill: logo, CIP, social photos, icons. Brand, tokens, UI code, banners, and slides live in their own sibling skills (see routing below).
 
 ## When to Use
 
@@ -32,8 +32,8 @@ Unified design skill: brand, tokens, UI, logo, CIP, banners, social photos, icon
 | shadcn/ui, Tailwind, code | `ui-styling` | Bundled sibling skill |
 | Logo creation, AI generation | Logo (built-in) | `references/logo-design.md` |
 | CIP mockups, deliverables | CIP (built-in) | `references/cip-design.md` |
-| Presentations, pitch decks | `design-system` | External skill — slide system lives there |
-| Banners, covers, headers | Banner (built-in) | `references/banner-sizes-and-styles.md` |
+| Presentations, pitch decks | `slides` | Sibling skill (uses `design-system` slide data) |
+| Banners, covers, headers | `banner-design` | Sibling skill |
 | Social media images/photos | Social Photos (built-in) | `references/social-photos-design.md` |
 | SVG icons, icon sets | Icon (built-in) | `references/icon-design.md` |
 
@@ -120,53 +120,6 @@ python3 scripts/cip/render-html.py --brand "TopGroup" --industry "consulting" --
 ```
 
 **Tip:** If no logo exists, use Logo Design section above first.
-
-## Banner Design (Built-in)
-
-22 art direction styles across social, ads, web, print. This workflow needs nothing outside the bundle: `references/banner-sizes-and-styles.md` and the bundled `ui-ux-pro-max` skill for style and palette guidance. Browser research, image generation, and screenshot capture are optional runtime capabilities; when unavailable, use supplied assets, CSS-built visuals, and the runtime's standard preview or capture workflow.
-
-Load `references/banner-sizes-and-styles.md` for complete sizes and styles reference.
-
-### Banner: Workflow
-
-1. **Gather requirements** via `AskUserQuestion` — purpose, platform, content, brand, style, quantity
-2. **Research** — Read `references/banner-sizes-and-styles.md` and use the bundled `ui-ux-pro-max` skill for style and palette guidance; if browser research is available and permitted, collect 3–5 references
-3. **Design** — Create the HTML/CSS banner at exact platform dimensions; use supplied assets or CSS-built visuals, or an authorized image-generation capability if the runtime provides one
-4. **Export** — Capture PNG at exact dimensions with the runtime's browser or screenshot capability; if unavailable, deliver the HTML/CSS source and mark PNG export as pending
-5. **Present** — Show all options side-by-side, iterate on feedback
-
-### Banner: Quick Size Reference
-
-| Platform | Type | Size (px) |
-|----------|------|-----------|
-| Facebook | Cover | 820 x 312 |
-| Twitter/X | Header | 1500 x 500 |
-| LinkedIn | Personal | 1584 x 396 |
-| YouTube | Channel art | 2560 x 1440 |
-| Instagram | Story | 1080 x 1920 |
-| Instagram | Post | 1080 x 1080 |
-| Google Ads | Med Rectangle | 300 x 250 |
-| Website | Hero | 1920 x 600-1080 |
-
-### Banner: Top Art Styles
-
-| Style | Best For |
-|-------|----------|
-| Minimalist | SaaS, tech |
-| Bold Typography | Announcements |
-| Gradient | Modern brands |
-| Photo-Based | Lifestyle, e-com |
-| Geometric | Tech, fintech |
-| Glassmorphism | SaaS, apps |
-| Neon/Cyberpunk | Gaming, events |
-
-### Banner: Design Rules
-
-- Safe zones: critical content in central 70-80%
-- One CTA per banner, bottom-right, min 44px height
-- Max 2 fonts, min 16px body, ≥32px headline
-- Text under 20% for ads (Meta penalizes)
-- Print: 300 DPI, CMYK, 3-5mm bleed
 
 ## Icon Design (Built-in)
 
@@ -259,7 +212,6 @@ Load `references/social-photos-design.md` for sizes, templates, best practices.
 | CIP Deliverables | `references/cip-deliverable-guide.md` |
 | CIP Styles | `references/cip-style-guide.md` |
 | CIP Prompts | `references/cip-prompt-engineering.md` |
-| Banner Sizes & Styles | `references/banner-sizes-and-styles.md` |
 | Social Photos Guide | `references/social-photos-design.md` |
 | Icon Design Guide | `references/icon-design.md` |
 

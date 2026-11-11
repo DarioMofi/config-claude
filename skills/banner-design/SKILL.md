@@ -1,6 +1,6 @@
 ---
 name: banner-design
-description: "Design banners for social media, ads, website heroes, creative assets, and print. Multiple art direction options with optional generated or supplied visuals. Actions: design, create, generate banner. Platforms: Facebook, Twitter/X, LinkedIn, YouTube, Instagram, Google Display, website hero, print. Styles: minimalist, gradient, bold typography, photo-based, illustrated, geometric, retro, glassmorphism, 3D, neon, duotone, editorial, collage."
+description: "Design banners, covers, and headers at exact platform sizes (social media, display ads, website hero, print), with several art direction options. Use when the user asks for a banner, cover, header, ad creative, or hero visual. Not for logos, icons, or social post images (`design`), or full pages and app UI (`frontend-design`)."
 argument-hint: "[platform] [style] [dimensions]"
 license: MIT
 metadata:

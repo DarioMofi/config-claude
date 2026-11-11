@@ -1,6 +1,6 @@
 ---
 name: frontend-design
-description: Guidance for distinctive, intentional visual design when building new UI or reshaping an existing one. Helps with aesthetic direction, typography, and making choices that don't read as templated defaults.
+description: "Aesthetic direction for distinctive, intentional UI when building a new interface or reshaping an existing one: visual concept, typography, layout, and avoiding templated defaults. Use before writing UI code when the look is not defined yet. Not for palette or font lookups and UX audits (`ui-ux-pro-max`), component implementation (`ui-styling`), or tokens (`design-system`)."
 license: Complete terms in LICENSE.txt
 ---
 

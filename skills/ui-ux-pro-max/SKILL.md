@@ -1,6 +1,6 @@
 ---
 name: ui-ux-pro-max
-description: "UI/UX style and accessibility rule engine for web, mobile, and desktop — not a token/CSS-variable design system (see the `design-system` skill for that). Use when designing, building, reviewing, or fixing interfaces, including pages, components, accessibility, interaction, responsive layout, typography, color, charts, and stack-specific UI implementation. Searchable local data: 79 searchable styles (50 active), 192 product palettes and reasoning profiles, 74 font pairings, 119 UX guidelines, 105 icons, 17 GSAP presets, 25 chart types, and 22 stacks."
+description: "UI/UX lookup engine and rulebook for web, mobile, and desktop: searchable styles, palettes and reasoning per product type, font pairings, UX and accessibility guidelines, icons, GSAP presets, stack-specific guidance (22 stacks), and RTL filters. Use when choosing a style, palette, or font pairing for a specific product, checking UX or accessibility rules, or auditing an existing interface for UX problems. Not a token system (`design-system`), not aesthetic direction (`frontend-design`), not component code (`ui-styling`)."
 ---
 
 # UI/UX Pro Max - Design Intelligence
