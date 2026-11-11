@@ -35,3 +35,36 @@ Las leyes y programas de desarrollo urbano cambian por administración (municipa
 - Proyecciones: UTM zona 14N (EPSG:32614) es común para México central; verifica la zona UTM correcta según la ubicación real de los datos.
 
 Para el detalle operativo de cada dominio, ver los skills `normativa-urb` y `gis-exp`.
+
+## Contexto compartido (Estado.md)
+
+En todo proyecto, `Estado.md` en la raíz es la libreta de estado compartida entre agentes (Claude y Antigravity). Si no existe, créalo con el formato de abajo e incluye inmediatamente `Estado.md` en `.gitignore` para mantenerlo como contexto local no versionado.
+
+1. **Al inicio de cada turno:** lee `Estado.md` para situar el objetivo actual, la última acción realizada y los bloqueos. Antigravity pudo haberlo cambiado desde tu último turno.
+2. **Al terminar tu tarea:** actualiza solo el estado inmediato:
+   - Última acción realizada (Agente: Claude).
+   - Archivos modificados o hash del commit.
+   - Próximo paso pendiente para el siguiente agente.
+3. **Límites:** máximo 50 líneas. Sobrescribe o elimina tareas resueltas; el historial vive en Git.
+
+Cada herramienta lee solo sus propios archivos de reglas: no leas `GEMINI.md`, `AGENTS.md` ni `.agents/` (son de Antigravity). Lo único compartido es `Estado.md`. El contexto durable del proyecto va en su `CLAUDE.md` (skill `actualizar-contexto`), no en `Estado.md`.
+
+Formato (el mismo que usa Antigravity; no cambies los encabezados):
+
+```markdown
+# Estado del Proyecto & Sesión
+
+## Objetivo Inmediato
+- [ ] Descripción breve del objetivo en curso.
+
+## Última Acción Realizada
+- **Agente**: Claude / Antigravity
+- **Cambio**: Resumen técnico de 1-2 líneas sobre lo implementado.
+- **Commit / Archivos**: `hash` o lista de archivos tocados.
+
+## Bloqueos / Notas
+- Ninguno (o dependencias pendientes).
+
+## Próximo Paso
+- Instrucción puntual para el siguiente turno o agente.
+```
