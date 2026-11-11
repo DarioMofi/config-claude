@@ -34,7 +34,7 @@ Copiados dentro de este repo porque se modificaron localmente (acotados para que
 
 Cambios locales sobre upstream: `design` no trae las referencias de slides (viven en `slides`/`design-system`); `ui-styling` no trae la capa "Canvas" (la filosofía visual vive en `frontend-design`); `ui-ux-pro-max` aclara en su descripción que no es un sistema de tokens.
 
-**Para actualizarlos** sin perder esos cambios: merge de 3 vías — la versión vendorizada original como base, la de este repo como "local" y la de upstream como "upstream". Así entran las correcciones de arriba y se conservan los recortes. Última sincronización: 2026-10-16.
+**Para actualizarlos** sin perder esos cambios: merge de 3 vías — la versión vendorizada original como base, la de este repo como "local" y la de upstream como "upstream". Así entran las correcciones de arriba y se conservan los recortes. Última sincronización: 2026-11-11 (`ui-ux-pro-max`: filtro RTL, Nuxt UI v4.12, catálogos de estilos y productos).
 
 ## Plugins (se instalan solos con el instalador)
 
