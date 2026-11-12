@@ -38,33 +38,39 @@ Para el detalle operativo de cada dominio, ver los skills `normativa-urb` y `gis
 
 ## Contexto compartido (Estado.md)
 
-En todo proyecto, `Estado.md` en la raíz es la libreta de estado compartida entre agentes (Claude y Antigravity). Si no existe, créalo con el formato de abajo. Se versiona en git junto con el proyecto para que viaje entre equipos: no lo agregues a `.gitignore` (y si ya está ahí, quítalo).
+En todo proyecto con git, `Estado.md` en la raíz es la libreta de estado compartida entre agentes (Claude y Antigravity), entre ramas y entre equipos. Se versiona en git: no lo agregues a `.gitignore` (si ya está ahí, quítalo). Si no existe, créalo con el formato de abajo y agrega la línea `Estado.md merge=union` a `.gitattributes`, para que git una los bloques de distintas ramas sin marcar conflicto.
 
-1. **Al inicio de cada turno:** lee `Estado.md` para situar el objetivo actual, la última acción realizada y los bloqueos. Antigravity pudo haberlo cambiado desde tu último turno.
-2. **Al terminar tu tarea:** actualiza solo el estado inmediato:
-   - Última acción realizada (Agente: Claude).
-   - Archivos modificados o hash del commit.
-   - Próximo paso pendiente para el siguiente agente.
-3. **Límites:** máximo 50 líneas. Sobrescribe o elimina tareas resueltas; el historial vive en Git.
+Hay un bloque por rama con trabajo activo; tú solo escribes en el de la rama actual (`git branch --show-current`; en un worktree es la rama de esa carpeta).
 
-Cada herramienta lee solo sus propios archivos de reglas: no leas `GEMINI.md`, `AGENTS.md` ni `.agents/` (son de Antigravity). Lo único compartido es `Estado.md`. El contexto durable del proyecto va en su `CLAUDE.md` (skill `actualizar-contexto`), no en `Estado.md`.
+1. **Al inicio de cada turno:** lee `Estado.md` y ubica el bloque de la rama actual. Si no existe, créalo al final de "Trabajo en curso".
+2. **Al terminar tu tarea:** actualiza solo el bloque de la rama actual, con Agente: Claude. No edites bloques de otras ramas; "Objetivo General" solo se edita en `main`. Si se comitea, `Estado.md` va en el mismo commit que el trabajo.
+3. **Al hacer merge:** revisa que la unión no haya dejado líneas duplicadas. En `main`, borra el bloque de la rama integrada si ya no tiene trabajo pendiente, y el de cualquier rama que ya no exista; conserva los de ramas que siguen activas.
+4. **Cambio de equipo:** si el usuario dice que va a cambiar de computadora, ofrece commit y push de cada rama con cambios pendientes, incluido `Estado.md`.
+5. **Límites:** máximo 50 líneas. Cada bloque guarda solo su estado más reciente; el historial vive en Git.
+
+El contexto durable del proyecto va en su `CLAUDE.md` (skill `actualizar-contexto`), no en `Estado.md`.
 
 Formato (el mismo que usa Antigravity; no cambies los encabezados):
 
 ```markdown
 # Estado del Proyecto & Sesión
 
-## Objetivo Inmediato
-- [ ] Descripción breve del objetivo en curso.
+## Objetivo General
+- Objetivo del proyecto o de la etapa actual (solo se edita en main).
 
-## Última Acción Realizada
+## Trabajo en curso
+
+### Rama: nombre-de-rama
+- **Objetivo**: Qué se busca en esta rama.
 - **Agente**: Claude / Antigravity
 - **Cambio**: Resumen técnico de 1-2 líneas sobre lo implementado.
-- **Commit / Archivos**: `hash` o lista de archivos tocados.
-
-## Bloqueos / Notas
-- Ninguno (o dependencias pendientes).
-
-## Próximo Paso
-- Instrucción puntual para el siguiente turno o agente.
+- **Commit / Archivos**: Archivos tocados o `hash` de commits previos.
+- **Bloqueos**: Ninguno (o dependencia, ej. "espera el endpoint /predios de la rama backend").
+- **Próximo paso**: Instrucción puntual para el siguiente turno o agente.
 ```
+
+## Aislamiento de reglas
+
+Cada herramienta opera solo con su propia configuración. No leas, cargues ni inspecciones `GEMINI.md`, `AGENTS.md`, `.agents/` ni `~/.gemini/` (son de Antigravity) salvo que el usuario lo pida explícitamente, para no gastar tokens ni mezclar reglas entre agentes. El único artefacto compartido es `Estado.md`.
+
+Excepción automática: si un proyecto tiene `AGENTS.md` pero no `CLAUDE.md`, Claude Code carga `AGENTS.md` por su cuenta al iniciar. En ese caso propón crear el `CLAUDE.md` del proyecto (skill `actualizar-contexto`) para que deje de cargarse.
