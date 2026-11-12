@@ -20,7 +20,7 @@ function Read-Utf8($Path) {
     return [System.IO.File]::ReadAllText($Path, [System.Text.Encoding]::UTF8)
 }
 
-foreach ($d in "skills", "agents", "commands") {
+foreach ($d in "skills", "agents", "commands", "hooks") {
     New-Item -ItemType Directory -Force -Path (Join-Path $ClaudeDir $d) | Out-Null
 }
 
@@ -43,9 +43,10 @@ foreach ($skill in Get-ChildItem -Directory -Path (Join-Path $ScriptDir "skills"
     Copy-Item -Path $skill.FullName -Destination $dest -Recurse
 }
 
-Write-Host "Copiando agentes y comandos..."
+Write-Host "Copiando agentes, comandos y hooks..."
 Copy-Item -Path (Join-Path $ScriptDir "agents\*") -Destination (Join-Path $ClaudeDir "agents") -Force
 Copy-Item -Path (Join-Path $ScriptDir "commands\*") -Destination (Join-Path $ClaudeDir "commands") -Force
+Copy-Item -Path (Join-Path $ScriptDir "hooks\*") -Destination (Join-Path $ClaudeDir "hooks") -Force
 
 Write-Host "Actualizando CLAUDE.md..."
 $Target = Join-Path $ClaudeDir "CLAUDE.md"
@@ -86,7 +87,14 @@ foreach ($prop in $repoSettings.PSObject.Properties) {
         if ($null -eq $currentSub) {
             $current.Value | Add-Member -NotePropertyName $sub.Name -NotePropertyValue $sub.Value
         } elseif ($sub.Value -is [System.Array]) {
-            $current.Value.($sub.Name) = @(@($currentSub.Value) + @($sub.Value) | Select-Object -Unique)
+            # Se compara por JSON para que los objetos (p. ej. entradas de hooks) tampoco se dupliquen.
+            $merged = @($currentSub.Value)
+            $seen = @($merged | ForEach-Object { $_ | ConvertTo-Json -Depth 20 -Compress })
+            foreach ($item in @($sub.Value)) {
+                $j = $item | ConvertTo-Json -Depth 20 -Compress
+                if ($seen -notcontains $j) { $merged += $item; $seen += $j }
+            }
+            $current.Value.($sub.Name) = $merged
         } else {
             $current.Value.($sub.Name) = $sub.Value
         }

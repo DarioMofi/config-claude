@@ -10,7 +10,7 @@ CLAUDE_DIR="${HOME}/.claude"
 BEGIN_MARK="<!-- BEGIN config-claude -->"
 END_MARK="<!-- END config-claude -->"
 
-mkdir -p "$CLAUDE_DIR/skills" "$CLAUDE_DIR/agents" "$CLAUDE_DIR/commands"
+mkdir -p "$CLAUDE_DIR/skills" "$CLAUDE_DIR/agents" "$CLAUDE_DIR/commands" "$CLAUDE_DIR/hooks"
 
 echo "Quitando lo que este repo ya no instala..."
 while IFS= read -r rel || [ -n "$rel" ]; do
@@ -30,9 +30,10 @@ for skill in "$SCRIPT_DIR"/skills/*/; do
   cp -r "$skill" "$CLAUDE_DIR/skills/$name"
 done
 
-echo "Copiando agentes y comandos..."
+echo "Copiando agentes, comandos y hooks..."
 cp -r "$SCRIPT_DIR/agents/." "$CLAUDE_DIR/agents/"
 cp -r "$SCRIPT_DIR/commands/." "$CLAUDE_DIR/commands/"
+cp -r "$SCRIPT_DIR/hooks/." "$CLAUDE_DIR/hooks/"
 
 echo "Actualizando CLAUDE.md..."
 TARGET="$CLAUDE_DIR/CLAUDE.md"

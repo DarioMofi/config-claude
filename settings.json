@@ -6,5 +6,29 @@
   },
   "env": {
     "VERCEL_PLUGIN_TELEMETRY": "off"
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"$USERPROFILE/.claude/hooks/estado-inicio.ps1\"",
+            "timeout": 20
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"$USERPROFILE/.claude/hooks/estado-fin.ps1\"",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
   }
 }

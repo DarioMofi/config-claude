@@ -19,7 +19,9 @@ Este repo es la "imagen" reproducible de esa configuración: clónalo en cualqui
 | [`agents/code-reviewer.md`](agents/code-reviewer.md) | Propio. Segunda opinión de revisión de código, aislada del contexto de quien escribió el cambio. Incluye la lista de riesgos de seguridad/rendimiento/pruebas/docs |
 | [`commands/architecture-review.md`](commands/architecture-review.md) | Propio. Comando manual (`/architecture-review`) — auditoría de arquitectura a nivel sistema |
 | [`commands/docu.md`](commands/docu.md) | Propio. Comando manual (`/docu`) — documenta los cambios de la sesión en un changelog, sin comitear |
-| [`settings.json`](settings.json) | Claves que el instalador fusiona en `~/.claude/settings.json`: confirmación obligatoria para el MCP de Supabase y telemetría de Vercel apagada |
+| [`hooks/estado-inicio.ps1`](hooks/estado-inicio.ps1) | Hook `SessionStart`. Al abrir una sesión en un repo git, hace `git fetch` (máx. 8 s) y le entrega a Claude un resumen: bloque faltante en `Estado.md`, worktrees registrados que faltan en este equipo, ramas registradas que ya no existen, carpetas sin registrar y commits sin subir o sin bajar. Solo informa |
+| [`hooks/estado-fin.ps1`](hooks/estado-fin.ps1) | Hook `Stop`. Si hay archivos modificados después de la última edición de `Estado.md`, le pide a Claude una vez que lo actualice antes de terminar. No comitea ni hace push |
+| [`settings.json`](settings.json) | Claves que el instalador fusiona en `~/.claude/settings.json`: confirmación obligatoria para el MCP de Supabase, telemetría de Vercel apagada y los dos hooks. Los hooks usan Windows PowerShell y Git Bash (viene con Git para Windows) |
 | [`plugins.json`](plugins.json) | Marketplaces y plugins que el instalador agrega |
 | [`retirados.txt`](retirados.txt) | Lo que versiones anteriores instalaban y ya no; el instalador lo borra de `~/.claude` |
 
