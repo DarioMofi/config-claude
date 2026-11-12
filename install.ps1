@@ -104,7 +104,9 @@ if ($null -ne $cmd) {
     $cli = $cmd.Source
 } else {
     # La app de escritorio trae su propio CLI aunque no este en el PATH.
-    $bundled = Get-ChildItem -Path (Join-Path $env:APPDATA "Claude\claude-code\*\*\claude.exe") -ErrorAction SilentlyContinue |
+    # Instalador clasico: %APPDATA%\Claude. Version de Microsoft Store: %LOCALAPPDATA%\Claude-Data\claude_<id>.
+    $bundled = Get-ChildItem -Path (Join-Path $env:APPDATA "Claude\claude-code\*\*\claude.exe"),
+                                   (Join-Path $env:LOCALAPPDATA "Claude-Data\*\claude-code\*\*\claude.exe") -ErrorAction SilentlyContinue |
         Sort-Object LastWriteTime -Descending | Select-Object -First 1
     if ($null -ne $bundled) { $cli = $bundled.FullName }
 }

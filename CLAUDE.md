@@ -38,7 +38,7 @@ Para el detalle operativo de cada dominio, ver los skills `normativa-urb` y `gis
 
 ## Contexto compartido (Estado.md)
 
-En todo proyecto, `Estado.md` en la raíz es la libreta de estado compartida entre agentes (Claude y Antigravity). Si no existe, créalo con el formato de abajo e incluye inmediatamente `Estado.md` en `.gitignore` para mantenerlo como contexto local no versionado.
+En todo proyecto, `Estado.md` en la raíz es la libreta de estado compartida entre agentes (Claude y Antigravity). Si no existe, créalo con el formato de abajo. Se versiona en git junto con el proyecto para que viaje entre equipos: no lo agregues a `.gitignore` (y si ya está ahí, quítalo).
 
 1. **Al inicio de cada turno:** lee `Estado.md` para situar el objetivo actual, la última acción realizada y los bloqueos. Antigravity pudo haberlo cambiado desde tu último turno.
 2. **Al terminar tu tarea:** actualiza solo el estado inmediato:
