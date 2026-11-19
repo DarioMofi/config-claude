@@ -1,6 +1,6 @@
 ---
 name: code-reviewer
-description: Segunda opinión de revisión de código, de solo lectura y aislada del contexto de quien escribió el cambio. Úsalo para revisar un diff, PR, o rango de commits contra los estándares del repo y el spec original. Complementa (no reemplaza) al skill `mattpocock-skills:code-review`, que define el proceso — este agente lo ejecuta de forma independiente, sin el sesgo de haber escrito el código.
+description: "Segunda opinión de revisión de código, de solo lectura y aislada del contexto de quien escribió el cambio. Revisor por defecto fuera de /feature-dev — úsalo para revisar un diff, PR o rango de commits contra los estándares del repo, el spec original y la lista de riesgos (seguridad, rendimiento, pruebas, docs). Reparto con los otros dos: el skill `mattpocock-skills:code-review` define el proceso y se invoca cuando el usuario pide una revisión formal de una rama/PR «desde X» (este agente lo ejecuta sin el sesgo de haber escrito el código); `feature-dev:code-reviewer` solo se usa dentro de la fase de revisión del comando /feature-dev, no como revisor general."
 tools: Read, Grep, Glob, Bash, WebFetch
 ---
 

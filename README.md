@@ -17,6 +17,7 @@ Este repo es la "imagen" reproducible de esa configuración: clónalo en cualqui
 | [`agents/territorial-analyst.md`](agents/territorial-analyst.md) | Propio. Subagente de investigación (solo lectura) para research normativo + geoespacial |
 | [`agents/gis-data-analyst.md`](agents/gis-data-analyst.md) | Propio. Subagente de solo lectura para inspeccionar y validar datos geoespaciales reales |
 | [`agents/code-reviewer.md`](agents/code-reviewer.md) | Propio. Segunda opinión de revisión de código, aislada del contexto de quien escribió el cambio. Incluye la lista de riesgos de seguridad/rendimiento/pruebas/docs |
+| ↳ Reparto de revisión de código | `code-reviewer` (este agente) es el revisor por defecto; `mattpocock-skills:code-review` es el proceso para una revisión formal de rama/PR; `feature-dev:code-reviewer` (plugin de la cuenta de claude.ai) solo dentro de `/feature-dev` |
 | [`commands/architecture-review.md`](commands/architecture-review.md) | Propio. Comando manual (`/architecture-review`) — auditoría de arquitectura a nivel sistema |
 | [`commands/docu.md`](commands/docu.md) | Propio. Comando manual (`/docu`) — documenta los cambios de la sesión en un changelog, sin comitear |
 | [`hooks/estado-inicio.ps1`](hooks/estado-inicio.ps1) | Hook `SessionStart`. Al abrir una sesión en un repo git, hace `git fetch` (máx. 8 s) y le entrega a Claude un resumen: bloque faltante en `Estado.md`, worktrees registrados que faltan en este equipo, ramas registradas que ya no existen, carpetas sin registrar y commits sin subir o sin bajar. Solo informa |
